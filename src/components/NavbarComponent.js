@@ -17,7 +17,7 @@ export default function NavbarComponent(props) {
         <>
             <Navbar className={'sticky-top top-0 border-bottom border-' + (props.isDarkMode ? 'white' : 'black')} bg={(props.isDarkMode) ? 'black' : 'light'} data-bs-theme={(props.isDarkMode) ? 'dark' : 'light'}>
                 <Container>
-                    <Navbar.Brand href="/"><img src="favicon.ico" alt="" /> {props.title}</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/"><img src="favicon.ico" alt="" /> {props.title}</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/about">{props.aboutText}</Nav.Link>
