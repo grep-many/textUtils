@@ -31,7 +31,7 @@ input[type="text"].form-control::placeholder{
     color: grey!important;
 }
 
-.alert.bg-black.alert-dismissible.fade.show.container.my-2.sticky-top{
+.alert.bg-black.alert-dismissible.fade.show.container{
     border-width: 2px;
     border-color: white;
     color: white;
@@ -40,7 +40,7 @@ input[type="text"].form-control::placeholder{
     }
 }
 
-.alert.bg-white.alert-dismissible.fade.show.container.my-2.sticky-top{
+.alert.bg-white.alert-dismissible.fade.show.container{
     border-width: 2px;
     border-color: black;
     color: black;
@@ -49,7 +49,7 @@ input[type="text"].form-control::placeholder{
     }
 }
 
-.alert.alert-danger.alert-dismissible.fade.show.container.my-2.sticky-top{
+.alert.alert-danger.alert-dismissible.fade.show.container{
     color:red;
     border-color: red;
 }
