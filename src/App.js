@@ -12,9 +12,7 @@ import {
 
 function App() {
   window.onload = () => {
-    localStorage.removeItem('userText')
-    console.clear()
-    console.log('error shown for latest react router v7')
+    localStorage.removeItem('userText');
   }; // This will clear all items in localStorage before the page reloads
 
   const [isDarkMode, setIsDarkMode] = useState(false);
