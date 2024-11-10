@@ -24,7 +24,10 @@ input#modeSwitch {
     color: black !important;
 }
 .bg-light.text-black.accordion-item >.accordion-header> button[type="button"].accordion-button::after{
-    background-color: white !important;
+    filter: invert(0);
+}
+.bg-black.text-light.accordion-item >.accordion-header> button[type="button"].accordion-button::after{
+    filter: invert(1);
 }
 
 input[type="text"].form-control::placeholder{

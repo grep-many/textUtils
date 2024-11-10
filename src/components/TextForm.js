@@ -154,7 +154,7 @@ export default function TextForm(props) {
         }
     }
 
-    const readingTime = text.split(" ").filter((element)=>{return element.length!==0}).length / wpm;
+    const words = text.split(/\s+/).filter((element)=>{return element.length!==0}).length ;
     return (
         <>
             <div className={'container my-3 px-5 py-3 rounded border border-' + (props.isDarkMode ? 'white bg-black text-light' : 'black bg-light text-black')} >
@@ -173,12 +173,12 @@ export default function TextForm(props) {
             </div>
             <div className={'container my-3 px-5 py-3 rounded border border-' + (props.isDarkMode ? 'white bg-black text-light' : 'black bg-light text-black')}>
                 <h2 className="fw-bolder">Your Text Summary</h2>
-                <p> {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+                <p> {words} words and {text.length} characters</p>
                 <label htmlFor="wpm" className="col-sm-5 col-form-label">How many word you can read in a minute</label>
                 <div className="col-sm-2">
                     <input type="text" className={"form-control " + (props.isDarkMode ? ' bg-black text-light' : 'bg-white text-black border border-black')} id="wpm" onChange={checkReadTime} placeholder={wpm} />
                 </div>
-                <p>{readingTime.toFixed(2)} minutes to read</p>
+                <p>{words.toFixed(2)/wpm} minutes to read</p>
             </div>
             <div className={'container my-3 px-5 py-3 rounded border border-' + (props.isDarkMode ? 'white bg-black text-light' : 'black bg-light text-black')}>
                 <h3 className='fw-bolder'>Preview</h3>
