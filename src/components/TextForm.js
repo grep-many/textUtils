@@ -98,25 +98,29 @@ export default function TextForm(props) {
     // Handle copy functionality
     const handleCopyText = () => {
         try {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => {
-                    props.showAlert('Success!', 'Text copied successfully', false);
-                }).catch(() => {
-                    props.showAlert('Error Occured!', 'Something went wrong while copying text.', true);
-                });
-            } else {
-                // Fallback method
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    props.showAlert('Success!', 'Text copied successfully', false);
-                } catch (err) {
-                    props.showAlert('Error Occured!', 'Something went wrong while copying text.', true);
+            if(!text.split(" ").filter((element)=>{return element.length!==0}).length){
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        props.showAlert('Success!', 'Text copied successfully', false);
+                    }).catch(() => {
+                        props.showAlert('Error Occured!', 'Something went wrong while copying text.', true);
+                    });
+                } else {
+                    // Fallback method
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        props.showAlert('Success!', 'Text copied successfully', false);
+                    } catch (err) {
+                        props.showAlert('Error Occured!', 'Something went wrong while copying text.', true);
+                    }
+                    document.body.removeChild(textArea);
                 }
-                document.body.removeChild(textArea);
+            }else{
+                props.showAlert('Invalid!', 'Nothing to copy in text field', true);
             }
         }
         catch (err) {
