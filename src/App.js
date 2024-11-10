@@ -69,7 +69,6 @@ function App() {
           <TextForm heading="Enter the Text to Analyze" isDarkMode={isDarkMode} showAlert={showAlert} />
         </>
       ),
-      index: true,
     },
     {
       path: "/about",
