@@ -19,7 +19,7 @@ export default function Alert(props) {
     if (!props.alert) return null; // Don't render the alert if it's null
 
     return (
-        <div className={`alert bg-${mode} ${props.alert.danger ? 'alert-danger' : ''} alert-dismissible fade show container my-2 sticky-top`} role="alert">
+        <div className={`alert bg-${mode} ${props.alert.danger ? 'alert-danger' : ''} alert-dismissible fade show container`} role="alert">
             <strong>{props.alert.title}</strong> {props.alert.para}
             <button
                 type="button"

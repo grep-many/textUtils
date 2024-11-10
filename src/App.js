@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  window.onload=()=>{
+  window.onload = () => {
     localStorage.removeItem('userText')
     console.clear()
     console.log('error shown for latest react router v7')
@@ -64,8 +64,10 @@ function App() {
       path: "/",
       element: (
         <>
-          <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
-          {alert && <Alert alert={alert} setAlert={setAlert} />}
+          <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <div className='my-1 sticky-top' style={{ height: '50px', top:'70px'}}>
+            {alert && <Alert alert={alert} setAlert={setAlert} />}
+          </div>
           <TextForm heading="Enter the Text to Analyze" isDarkMode={isDarkMode} showAlert={showAlert} />
         </>
       ),
@@ -74,16 +76,18 @@ function App() {
       path: "/about",
       element: (
         <>
-          <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
-          {alert && <Alert alert={alert} setAlert={setAlert} />}
+          <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          <div className='my-1 sticky-top' style={{ height: '50px' , top:'70px' }}>
+            {alert && <Alert alert={alert} setAlert={setAlert} />}
+          </div>
           <About isDarkMode={isDarkMode} />
         </>
       ),
     },
-  ],{
-    basename:"/textUtils/"
+  ], {
+    basename: "/textUtils/"
   }
-);
+  );
 
   return (
     <RouterProvider router={router} />
