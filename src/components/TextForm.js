@@ -98,7 +98,7 @@ export default function TextForm(props) {
     // Handle copy functionality
     const handleCopyText = () => {
         try {
-            if(!text.split(" ").filter((element)=>{return element.length!==0}).length){
+            if(text){
                 if (navigator.clipboard && window.isSecureContext) {
                     navigator.clipboard.writeText(text).then(() => {
                         props.showAlert('Success!', 'Text copied successfully', false);
