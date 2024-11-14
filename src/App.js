@@ -5,10 +5,7 @@ import NavbarComponent from "./components/NavbarComponent";
 import TextForm from './components/TextForm';
 import React, { useState, useEffect } from 'react';
 import Alert from './components/Alert';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   window.onload = () => {
@@ -56,39 +53,28 @@ function App() {
     document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
   }, [isDarkMode]);
 
-  // Define routes using createBrowserRouter
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <>
-          <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-          <div className='my-1 sticky-top' style={{ height: '50px', top:'70px'}}>
-            {alert && <Alert alert={alert} setAlert={setAlert} />}
-          </div>
-          <TextForm heading="Enter the Text to Analyze" isDarkMode={isDarkMode} showAlert={showAlert} />
-        </>
-      ),
-    },
-    {
-      path: "/about",
-      element: (
-        <>
-          <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-          <div className='my-1 sticky-top' style={{ height: '50px' , top:'70px' }}>
-            {alert && <Alert alert={alert} setAlert={setAlert} />}
-          </div>
-          <About isDarkMode={isDarkMode} />
-        </>
-      ),
-    },
-  ], {
-    basename: "/textUtils/"
-  }
-  );
-
   return (
-    <RouterProvider router={router} />
+    <BrowserRouter basename="/textUtils">
+      <NavbarComponent title='TextUtils' aboutText='About' isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <div className='my-1 sticky-top' style={{ height: '50px', top: '70px' }}>
+        {alert && <Alert alert={alert} setAlert={setAlert} />}
+      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={<TextForm heading="Enter the Text to Analyze" isDarkMode={isDarkMode} showAlert={showAlert} />}
+        />
+        <Route
+          path="/about"
+          element={<About isDarkMode={isDarkMode} />}
+        />
+        {/* Fallback Route for non-matching paths */}
+        <Route
+          path="*"
+          element={<TextForm heading="Enter the Text to Analyze" isDarkMode={isDarkMode} showAlert={showAlert} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
