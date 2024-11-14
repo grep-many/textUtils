@@ -1,26 +1,20 @@
 name: Deploy React site to GitHub Pages
 
 on:
-  # Trigger on push to the main branch
   push:
     branches: ["main"]
-
-  # Allow manual workflow triggers
   workflow_dispatch:
 
-# Permissions for GitHub Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Job to build the React application
   build:
     runs-on: ubuntu-latest
     steps:
@@ -38,13 +32,14 @@ jobs:
       - name: Build the React app
         run: npm run build
 
-      # Upload build artifacts to use in the deployment job
+      - name: Create 404.html for routing support
+        run: cp build/index.html build/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./build
 
-  # Job to deploy to GitHub Pages
   deploy:
     environment:
       name: github-pages
